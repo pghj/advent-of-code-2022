@@ -39,3 +39,7 @@ fun <T> shouldBe(expected: T, actual: T) {
 fun vec2(x: Int, y: Int) : IntVector {
     return IntVector.of(x, y)
 }
+
+fun vec(vararg c: Int) : IntVector {
+    return IntVector(c)
+}
