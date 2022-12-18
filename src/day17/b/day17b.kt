@@ -116,6 +116,9 @@ fun main() {
 
     val memoization = HashMap<Key, Result>()
 
+    /**
+     * Combine all memoized results that are part of a repeating sequence.
+     */
     fun calculateCycleProperties(start: Key): Pair<Long, Long> {
         var h = 0L
         var n = 0L
@@ -133,28 +136,43 @@ fun main() {
     (0..6).forEach { x->initialFlatSurface.add(vec2(x,0)) }
 
     var next = Key(0,0, initialFlatSurface)
-    // drop rocks until done, or until we hit a repeating sequence
+    // Drop rocks until done, or until we hit a repeating sequence.
     while (true) {
         val result = dropRocks(next, rocksToObserve - rocks)
         height += result.gainedHeight
         rocks += result.rockCount
-        if (rocks == rocksToObserve) break
+        if (rocks == rocksToObserve) break // leave because we are done already
         memoization[next] = result
         next = result.next
-        if (memoization.containsKey(next)) break
+        if (memoization.containsKey(next)) break // leave because of repetition
     }
     if (rocks < rocksToObserve) {
-        // because of the exit condition of the previous loop, we must have entered a repeating sequence
+        // We must have entered a repeating sequence.
         val (r, h) = calculateCycleProperties(next)
         val nRepeats = (rocksToObserve - rocks) / r
         rocks += r * nRepeats
         height += h * nRepeats
-        // remaining rocks that did not fit entirely into the repeating sequence:
-        while (rocks < rocksToObserve) {
-            val result = dropRocks(next, rocksToObserve-rocks)
-            height += result.gainedHeight
-            rocks += result.rockCount
-            next = result.next
+        if (rocks < rocksToObserve) {
+            // There are some remaining rocks that did not fit entirely into a repeating sequence.
+            while(rocks < rocksToObserve) {
+                // Continue using memoized results for as long as they don't exceed remaining rocks.
+                val result = memoization[next]!!
+                if (rocks + result.rockCount <= rocksToObserve) {
+                    rocks += result.rockCount
+                    height += result.gainedHeight
+                    next = result.next
+                    continue
+                } else break
+            }
+            if (rocks < rocksToObserve) {
+                // Do the final simulation until we run out of rocks.
+                // A single call will process all remaining rocks: otherwise, it would have been
+                // applied in the previous loop using memoized results.
+                val result = dropRocks(next, rocksToObserve-rocks)
+                height += result.gainedHeight
+                rocks += result.rockCount
+                next = result.next
+            }
         }
     }
     // Until now, height is only the part of the pile that became sealed of by the top layer.
