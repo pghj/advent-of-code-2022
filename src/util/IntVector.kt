@@ -22,6 +22,10 @@ class IntVector {
             check(t.size == 2)
             return IntVector(t)
         }
+
+        fun unit(dim: Int, axis: Int): IntVector {
+            return IntVector(dim) { if (it == axis) 1 else 0 }
+        }
     }
 
     fun rotate(fromAxis: Int, toAxis: Int): IntVector {
@@ -88,4 +92,13 @@ class IntVector {
         for (i in a.indices) a[i] = -a[i]
         return IntVector(a)
     }
+
+    fun all(function: (v: Int) -> Boolean): Boolean {
+        return coefficient.all(function)
+    }
+
+    fun any(function: (v: Int) -> Boolean): Boolean {
+        return coefficient.any(function)
+    }
+
 }
