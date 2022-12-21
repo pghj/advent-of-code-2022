@@ -56,8 +56,8 @@ fun main() {
     d("19.b") { day19.b.main() }
     d("20.a") { day20.a.main() }
     d("20.b") { day20.b.main() }
-//    d("21.a") { day21.a.main() }
-//    d("21.b") { day21.b.main() }
+    d("21.a") { day21.a.main() }
+    d("21.b") { day21.b.main() }
 //    d("22.a") { day22.a.main() }
 //    d("22.b") { day22.b.main() }
 //    d("23.a") { day23.a.main() }
