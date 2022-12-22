@@ -50,6 +50,8 @@ All solutions are written in [Kotlin][kotlin] without using external libraries.
 | 20.b |         378 ms |
 | 21.a |          23 ms |
 | 21.b |          18 ms |
+| 22.a |          71 ms |
+| 22.b |          51 ms |
 
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.

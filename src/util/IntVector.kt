@@ -4,6 +4,9 @@ class IntVector {
 
     val coefficient: IntArray
 
+    val dim: Int
+        get() { return coefficient.size }
+
     constructor(coefficient: IntArray) {
         this.coefficient = coefficient.copyOf()
     }
@@ -33,6 +36,46 @@ class IntVector {
         c[toAxis] = coefficient[fromAxis]
         c[fromAxis] = - coefficient[toAxis]
         return IntVector(c)
+    }
+
+    fun rotate(fromAxis: Int, toAxis: Int, pivot: IntVector): IntVector {
+        val c = coefficient.copyOf()
+        c[toAxis] = coefficient[fromAxis] - pivot[fromAxis] + pivot[toAxis]
+        c[fromAxis] = - coefficient[toAxis] + pivot[fromAxis] + pivot[toAxis]
+        return IntVector(c)
+    }
+
+    /**
+     * Rotate 180 degrees.
+     */
+    fun rotate2(fromAxis: Int, toAxis: Int): IntVector {
+        val c = coefficient.copyOf()
+        c[fromAxis] = - coefficient[fromAxis]
+        c[toAxis] = - coefficient[toAxis]
+        return IntVector(c)
+    }
+
+    /**
+     * Rotate 180 degrees around pivot.
+     */
+    fun rotate2(fromAxis: Int, toAxis: Int, pivot: IntVector): IntVector {
+        val c = coefficient.copyOf()
+        c[fromAxis] = - coefficient[fromAxis] + 2*pivot[fromAxis]
+        c[toAxis] = - coefficient[toAxis] + 2*pivot[toAxis]
+        return IntVector(c)
+    }
+
+    /**
+     * Rotate 90 degrees. Arguments must be perpendicular unit vectors.
+     */
+    fun rotate(from: IntVector, to: IntVector) : IntVector {
+        check(from dot from == 1) // unit length
+        check(to dot to == 1) // unit length
+        check(from dot to == 0) // perpendicular
+        val p = of(from dot this, to dot this)
+        val q = this - from*p[0] - to*p[1]
+        val r = p.rotate(0,1)
+        return from * r[0] + to * r[1] + q
     }
 
     fun copy(): IntVector {
@@ -100,5 +143,23 @@ class IntVector {
     fun any(function: (v: Int) -> Boolean): Boolean {
         return coefficient.any(function)
     }
+
+    infix fun dot(other: IntVector): Int {
+        ensureSameDimension(other)
+        var r = 0
+        for (i in 0 until dim) r += this[i] * other[i]
+        return r
+    }
+
+    infix fun cross(b: IntVector): IntVector {
+        check(dim == 3 && b.dim == 3)
+        val a = this
+        return of(
+            a[1]*b[2]-a[2]*b[1],
+            a[2]*b[0]-a[0]*b[2],
+            a[0]*b[1]-a[1]*b[0]
+        )
+    }
+
 
 }
