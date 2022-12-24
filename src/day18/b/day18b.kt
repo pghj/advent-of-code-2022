@@ -92,6 +92,27 @@ fun <T> repeatUntilEmpty(collection: MutableCollection<T>, each : (T) -> Unit) {
     }
 }
 
+/**
+ * Create a copy of the collection, clear the collection, and invoke function for each value in the copy.
+ */
+inline fun <T> copyClearForEach(collection: MutableCollection<T>, each : (T) -> Unit) {
+    val cpy = ArrayList(collection)
+    collection.clear()
+    cpy.forEach { each(it) }
+}
+
+/**
+ * Invoke action for all four unit directions in 2-dimensional space.
+ */
+inline fun inFourDirections( action: (IntVector) -> Unit) {
+    var p = vec(1,0)
+    action(p)
+    repeat(3) {
+        p = p.rotate(0, 1)
+        action(p)
+    }
+}
+
 fun inBounds(min: IntVector, max: IntVector, p: IntVector): Boolean {
     for (i in 0..2)
         if (p[i] !in min[i]..max[i]) return false
