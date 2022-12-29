@@ -5,6 +5,7 @@ import shouldBe
 import util.IntVector
 import vec
 import java.util.regex.Pattern
+import kotlin.math.sqrt
 
 fun main() {
     val input = read()
@@ -165,13 +166,14 @@ class Input(
 )
 
 fun read(): Input {
-    val size = 50
+    val size : Int
     val lines = readInputLines(22)
     val instr = lines.last()
     val map = HashMap<IntVector, Char>()
     run {
         var p = vec(0, 0)
         val m = lines.subList(0, lines.size-1).filter { it.isNotBlank() }
+        size = sqrt(m.sumOf { it.trim().length } / 6.0).toInt()
         m.forEach { row ->
             var q = p
             for (c in row) {
