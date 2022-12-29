@@ -2,32 +2,37 @@
 
 [My][github] solutions to the Advent of Code[^aoc] 2022.
 
-All solutions are written in [Kotlin][kotlin] without using external libraries.
+Solutions are written in [Kotlin][kotlin] without using external libraries. 
 
-## Links to Solutions and their Execution Times
+They are all **general** solutions that should work on any input.
+For example:
+ * [problem 17, part 2][src17b] proves that a pattern is infinitely repeating, before extrapolating a result, and
+ * [problem 22, part 2][src22b] accepts every possible cube unfolding (or [net][wpNet]) in any orientation, of any size.
+
+## Links to Solutions
 
 | Day            | Execution Time |     | Day            | Execution Time |     | Day            | Execution Time |
 |----------------|---------------:|-----|----------------|---------------:|-----|----------------|---------------:|
-| [01.a][src01a] |          34 ms |     | [11.a][src11a] |          13 ms |     | [21.a][src21a] |          24 ms |
-| [01.b][src01b] |          10 ms |     | [11.b][src11b] |         479 ms |     | [21.b][src21b] |          17 ms |
-| [02.a][src02a] |           2 ms |     | [12.a][src12a] |          19 ms |     | [22.a][src22a] |          83 ms |
-| [02.b][src02b] |           2 ms |     | [12.b][src12b] |          12 ms |     | [22.b][src22b] |          53 ms |
-| [03.a][src03a] |          16 ms |     | [13.a][src13a] |           5 ms |     | [23.a][src23a] |          45 ms |
-| [03.b][src03b] |           6 ms |     | [13.b][src13b] |           8 ms |     | [23.b][src23b] |        1724 ms |
-| [04.a][src04a] |          10 ms |     | [14.a][src14a] |          39 ms |     | [24.a][src24a] |         205 ms |
-| [04.b][src04b] |           7 ms |     | [14.b][src14b] |         450 ms |     | [24.b][src24b] |         358 ms |
-| [05.a][src05a] |           4 ms |     | [15.a][src15a] |           6 ms |     | [25.a][src25a] |           1 ms |
-| [05.b][src05b] |           3 ms |     | [15.b][src15b] |        2176 ms |     |
-| [06.a][src06a] |           1 ms |     | [16.a][src16a] |          80 ms |     |
-| [06.b][src06b] |           1 ms |     | [16.b][src16b] |        1265 ms |     |
+| [01.a][src01a] |          38 ms |     | [11.a][src11a] |          13 ms |     | [21.a][src21a] |          23 ms |
+| [01.b][src01b] |          10 ms |     | [11.b][src11b] |         487 ms |     | [21.b][src21b] |          20 ms |
+| [02.a][src02a] |           2 ms |     | [12.a][src12a] |          20 ms |     | [22.a][src22a] |          97 ms |
+| [02.b][src02b] |           2 ms |     | [12.b][src12b] |          12 ms |     | [22.b][src22b] |          52 ms |
+| [03.a][src03a] |          17 ms |     | [13.a][src13a] |           5 ms |     | [23.a][src23a] |          44 ms |
+| [03.b][src03b] |           6 ms |     | [13.b][src13b] |           9 ms |     | [23.b][src23b] |        1675 ms |
+| [04.a][src04a] |           9 ms |     | [14.a][src14a] |          43 ms |     | [24.a][src24a] |         220 ms |
+| [04.b][src04b] |           6 ms |     | [14.b][src14b] |         447 ms |     | [24.b][src24b] |         356 ms |
+| [05.a][src05a] |           5 ms |     | [15.a][src15a] |           6 ms |     | [25.a][src25a] |           1 ms |
+| [05.b][src05b] |           3 ms |     | [15.b][src15b] |         369 ms |     |
+| [06.a][src06a] |           1 ms |     | [16.a][src16a] |          77 ms |     |
+| [06.b][src06b] |           1 ms |     | [16.b][src16b] |        1259 ms |     |
 | [07.a][src07a] |           8 ms |     | [17.a][src17a] |          27 ms |     |
-| [07.b][src07b] |           3 ms |     | [17.b][src17b] |          47 ms |     |
-| [08.a][src08a] |          34 ms |     | [18.a][src18a] |          17 ms |     |
-| [08.b][src08b] |          37 ms |     | [18.b][src18b] |         499 ms |     |
-| [09.a][src09a] |          13 ms |     | [19.a][src19a] |         261 ms |     |
-| [09.b][src09b] |          27 ms |     | [19.b][src19b] |         393 ms |     |
-| [10.a][src10a] |           1 ms |     | [20.a][src20a] |         134 ms |     |
-| [10.b][src10b] |           9 ms |     | [20.b][src20b] |         377 ms |     |
+| [07.b][src07b] |           4 ms |     | [17.b][src17b] |          47 ms |     |
+| [08.a][src08a] |          33 ms |     | [18.a][src18a] |          15 ms |     |
+| [08.b][src08b] |          32 ms |     | [18.b][src18b] |         529 ms |     |
+| [09.a][src09a] |          11 ms |     | [19.a][src19a] |         253 ms |     |
+| [09.b][src09b] |          33 ms |     | [19.b][src19b] |         363 ms |     |
+| [10.a][src10a] |           1 ms |     | [20.a][src20a] |         393 ms |     |
+| [10.b][src10b] |           8 ms |     | [20.b][src20b] |         452 ms |     |
 
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.
@@ -86,3 +91,4 @@ All solutions are written in [Kotlin][kotlin] without using external libraries.
 [aoc]: https://adventofcode.com
 [github]: https://github.com/pghj
 [kotlin]: https://kotlinlang.org
+[wpNet]: https://en.wikipedia.org/wiki/Net_(polyhedron)
