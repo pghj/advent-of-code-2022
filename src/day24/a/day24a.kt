@@ -1,7 +1,7 @@
 package day24.a
 
-import day18.b.copyClearForEach
-import day18.b.inFourDirections
+import copyClearForEach
+import inFourDirections
 import readInputLines
 import shouldBe
 import util.IntVector
